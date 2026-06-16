@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pooria Yavari - Backend Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Pooria Yavari - Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,431 +11,609 @@
       rel="stylesheet"
     />
     <style>
+      :root {
+        --primary: #0f172a;
+        --secondary: #334155;
+        --accent: #2563eb;
+        --accent-light: #eff6ff;
+        --text-main: #475569;
+        --border: #cbd5e1;
+        --bg-page: #e2e8f0;
+        --white: #ffffff;
+        --section-bg: #f8fafc;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
       body {
         font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: var(--text-main);
+        background-color: var(--bg-page);
+        padding: 40px 20px;
       }
+
+      .resume-container {
+        max-width: 210mm;
+        margin: 0 auto;
+        background-color: var(--white);
+        box-shadow: 0 15px 50px -10px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      header {
+        background-color: var(--primary);
+        color: var(--white);
+        padding: 40px 50px;
+        position: relative;
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: var(--accent);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        color: var(--white);
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        font-size: 1.15rem;
+        font-weight: 400;
+        color: #94a3b8;
+        margin-bottom: 20px;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #e2e8f0;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .contact-item svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.9;
+      }
+
+      .contact-info a {
+        color: #e2e8f0;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .contact-info a:hover {
+        color: var(--white);
+      }
+
+      .content {
+        padding: 0 50px 40px 50px;
+      }
+
+      section {
+        padding-top: 30px;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--primary);
+        display: flex;
+        align-items: center;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: var(--secondary);
+        margin-bottom: 12px;
+        text-align: justify;
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      li {
+        font-size: 0.95rem;
+        color: var(--secondary);
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 18px;
+        text-align: justify;
+      }
+
+      li::before {
+        content: "■";
+        color: var(--accent);
+        font-size: 0.7em;
+        position: absolute;
+        left: 0;
+        top: 6px;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: minmax(200px, auto) 1fr;
+        gap: 15px 25px;
+        background: var(--section-bg);
+        padding: 25px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+
+      .skill-category {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 0.95rem;
+      }
+
+      .skill-list {
+        color: var(--secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .entry {
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+        border-bottom: 1px dashed var(--border);
+      }
+
+      .entry:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 10px;
+      }
+
+      .entry-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 6px;
+      }
+
+      .entry-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .entry-meta {
+        font-size: 0.95rem;
+        color: var(--accent);
+        font-weight: 600;
+        background: var(--accent-light);
+        padding: 4px 10px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+
+      .entry-subtitle {
+        font-size: 1rem;
+        color: var(--primary);
+        font-weight: 500;
+        font-style: italic;
+        margin-bottom: 12px;
+      }
+
+      strong {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
       @media print {
         body {
+          background-color: var(--white);
+          padding: 0;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
-        .no-print {
-          display: none;
-        }
-        .printable-area {
+        .resume-container {
           box-shadow: none;
-          margin: 0;
-          padding: 1.5rem;
+          max-width: 100%;
+          border-radius: 0;
+        }
+        header {
+          padding: 30px 40px;
+        }
+        .content {
+          padding: 20px 40px;
+        }
+        .skills-grid {
+          background: #f8fafc;
+        }
+        section {
+          padding-top: 20px;
+        }
+        .avoid-break {
+          page-break-inside: avoid;
         }
       }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-900">
-    <div class="printable-area max-w-4xl mx-auto my-6 p-12 bg-white shadow-xl">
-      <!-- Header -->
-      <header class="border-b-2 border-blue-600 pb-6 mb-8">
-        <h1 class="text-5xl font-bold text-gray-900 tracking-tight">
-          Pooria Yavari
-        </h1>
-        <h2 class="text-2xl font-light text-blue-600 mt-2 mb-4">
-          Junior Backend Developer
-        </h2>
-        <div class="flex flex-wrap gap-4 text-sm text-gray-600">
-          <span class="flex items-center gap-2">
+  <body>
+    <div class="resume-container">
+      <header>
+        <h1>Pooria Yavari</h1>
+        <div class="subtitle">
+          Process & Automation Engineer | R&D Infrastructure & Data Pipelines
+        </div>
+
+        <div class="contact-info">
+          <div class="contact-item">
             <svg
-              class="w-4 h-4"
+              viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-              ></path>
-            </svg>
-            (+98) 921-702-6103
-          </span>
-          <span class="text-gray-300">|</span>
-          <a
-            href="mailto:pooriayavari@yahoo.com"
-            class="flex items-center gap-2 hover:text-blue-600 transition"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
-            </svg>
-            pooriayavari@yahoo.com
-          </a>
-          <span class="text-gray-300">|</span>
-          <span class="flex items-center gap-2">
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-              ></path>
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
             </svg>
             Tehran, Iran
-          </span>
-          <span class="text-gray-300">|</span>
-          <span class="flex items-center gap-2">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          </div>
+          <div class="contact-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-              />
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
-            github.com/p-yavari
-          </span>
+            <a href="mailto:pooriayavari@yahoo.com">pooriayavari@yahoo.com</a>
+          </div>
+          <div class="contact-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            <span>(+98) 921-702-6103</span>
+          </div>
+          <div class="contact-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <a href="https://linkedin.com/in/pooria-yavari" target="_blank"
+              >linkedin.com/in/pooria-yavari</a
+            >
+          </div>
+          <div class="contact-item">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <a href="https://github.com/p-yavari" target="_blank"
+              >github.com/p-yavari</a
+            >
+          </div>
         </div>
       </header>
 
-      <!-- Professional Summary -->
-      <section class="mb-8">
-        <h3
-          class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-2"
-        >
-          <div class="w-1 h-6 bg-blue-600"></div>
-          Professional Summary
-        </h3>
-        <p class="text-gray-700 leading-relaxed">
-          Self-motivated developer with strong problem-solving skills and
-          hands-on experience building RESTful APIs with Django and Python.
-          Demonstrated ability to learn quickly and work independently across
-          the full development lifecycle—from designing data models to deploying
-          applications on Linux servers. Eager to contribute to a collaborative
-          team environment while expanding expertise in modern backend
-          technologies and best practices.
-        </p>
-      </section>
+      <div class="content">
+        <section>
+          <h2>Executive Summary</h2>
+          <p>
+            Process Engineer with practical experience in physical testing
+            apparatus design, hardware modification, and backend software
+            automation. Specialized in bridging laboratory operations with
+            digital workflows—from engineering dual-mode bioprinters to
+            constructing complex, sensor-integrated volumetric adsorption
+            devices from scratch. Proficient in architecting data pipelines
+            using Python and MATLAB, and deploying containerized server
+            environments to streamline and intelligentize engineering
+            operations.
+          </p>
+        </section>
 
-      <!-- Technical Skills -->
-      <section class="mb-8">
-        <h3
-          class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2"
-        >
-          <div class="w-1 h-6 bg-blue-600"></div>
-          Technical Skills
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">
-              Backend Development
-            </h4>
-            <p class="text-gray-700">Python, Django, Django REST Framework</p>
+        <section>
+          <h2>Technical Proficiencies</h2>
+          <div class="skills-grid">
+            <div class="skill-category">Software & Automation</div>
+            <div class="skill-list">
+              Python, MATLAB, API Integration (REST), Batch Data Processing,
+              Automated Data Pipelines
+            </div>
+
+            <div class="skill-category">Infrastructure & DevOps</div>
+            <div class="skill-list">
+              Linux Server Administration, Docker Containerization, Nginx,
+              Google Cloud Platform (GCP), Git
+            </div>
+
+            <div class="skill-category">Hardware & R&D</div>
+            <div class="skill-list">
+              Custom Testing Apparatus Design, 3D Bioprinting (FDM & DIW),
+              Marlin Firmware Customization (C++), Sensor Integration
+            </div>
           </div>
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">
-              Databases & Query Languages
-            </h4>
-            <p class="text-gray-700">MySQL, MariaDB, SQL</p>
+        </section>
+
+        <section class="avoid-break">
+          <h2>Professional Experience</h2>
+
+          <div class="entry">
+            <div class="entry-header">
+              <div class="entry-title">
+                Digital Infrastructure & Automation Engineer
+              </div>
+              <div class="entry-meta">April 2025 – Present</div>
+            </div>
+            <div class="entry-subtitle">Euroslot Pars</div>
+            <ul>
+              <li>
+                Administered an unmanaged Linux (KVM) server architecture from
+                scratch, implementing comprehensive network security (CSF
+                firewall, HSTS), mail authentication (DKIM/PTR), and Cloudflare
+                CDN to ensure continuous platform uptime.
+              </li>
+              <li>
+                Deployed web architectures using Docker and Nginx reverse
+                proxies to support digital infrastructure for the Oil & Gas and
+                Water Treatment sectors.
+              </li>
+              <li>
+                Developed custom Python API scripts to extract, compress, and
+                migrate over 300 dynamic product specifications into live
+                database environments, eliminating manual data entry.
+              </li>
+            </ul>
           </div>
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">API Development</h4>
-            <p class="text-gray-700">
-              RESTful API Design, JSON, Token Authentication
+
+          <div class="entry avoid-break">
+            <div class="entry-header">
+              <div class="entry-title">Co-founder & Technical Lead</div>
+              <div class="entry-meta">March 2020 – January 2025</div>
+            </div>
+            <div class="entry-subtitle">Bereyto</div>
+            <ul>
+              <li>
+                Maintained and debugged a Laravel-based e-commerce platform,
+                ensuring reliable backend performance and automated tracking
+                system functionality.
+              </li>
+              <li>
+                Researched and implemented AI-driven image generation workflows
+                to create virtual fashion models for product displays,
+                navigating hardware limitations by optimizing processing
+                pipelines.
+              </li>
+              <li>
+                Built Python-based batch processing scripts utilizing PIL and
+                pyexiv2 to autonomously extract, manipulate, and enrich image
+                metadata at scale.
+              </li>
+              <li>
+                Integrated external spreadsheet APIs to handle user inputs and
+                automate repetitive data formatting workflows.
+              </li>
+            </ul>
+          </div>
+
+          <div class="entry avoid-break">
+            <div class="entry-header">
+              <div class="entry-title">Process Automation Developer</div>
+              <div class="entry-meta">April 2019 – January 2024</div>
+            </div>
+            <div class="entry-subtitle">Freelance (Upwork, ParsCoders)</div>
+            <ul>
+              <li>
+                Awarded Top 30 National Freelancer by ParsCoders for two
+                consecutive years (2022, 2023) for delivering high-quality
+                technical solutions.
+              </li>
+              <li>
+                Developed custom computational scripts using MATLAB and Python
+                to replace manual, paper-based engineering workflows with
+                reusable, automated programs.
+              </li>
+            </ul>
+          </div>
+
+          <div class="entry avoid-break">
+            <div class="entry-header">
+              <div class="entry-title">Process Engineering Intern</div>
+              <div class="entry-meta">May 2020 – September 2020</div>
+            </div>
+            <div class="entry-subtitle">
+              Persian Gulf Petrochemical Industries Co. (PGPIC)
+            </div>
+            <ul>
+              <li>
+                Analyzed VCM and EDC units of Arvand Petrochemical alongside
+                senior engineers to identify process improvements and
+                operational enhancements.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="avoid-break">
+          <h2>Education</h2>
+
+          <div class="entry">
+            <div class="entry-header">
+              <div class="entry-title">
+                Master of Science, Chemical Engineering (Process Design)
+              </div>
+              <div class="entry-meta">2021 – 2024</div>
+            </div>
+            <div class="entry-subtitle">
+              Iran University of Science and Technology
+            </div>
+            <p>
+              <strong>Thesis:</strong> Novel Synthesis of SC-PMO and Development
+              of Volumetric Adsorption Systems with Automated Analytics |
+              <strong>Thesis Grade: Excellent (19-20/20 Bracket)</strong>
+            </p>
+            <ul>
+              <li>
+                <strong>Hardware Integration:</strong> Designed and built a
+                comprehensive, multi-stage volumetric adsorption device from
+                scratch. Engineered the system to pair manual physical
+                operations with a fully automated computational pipeline to
+                ensure precise P/T data collection.
+              </li>
+              <li>
+                <strong>Process Data Automation:</strong> Developed
+                multi-environment software (Python, MATLAB) to calculate
+                location-based gauge pressure, apply complex physical device
+                relations, and actively prevent user errors via automated
+                multi-phase detection.
+              </li>
+              <li>
+                <strong>GUI Development:</strong> Designed a custom MATLAB
+                graphical interface to make programmatic data analysis
+                accessible to non-programming R&D researchers.
+              </li>
+            </ul>
+          </div>
+
+          <div class="entry avoid-break">
+            <div class="entry-header">
+              <div class="entry-title">
+                Bachelor of Science, Chemical Engineering
+              </div>
+              <div class="entry-meta">2017 – 2021</div>
+            </div>
+            <div class="entry-subtitle">Urmia University</div>
+            <ul>
+              <li><strong>GPA:</strong> 3.52 / 4.0</li>
+              <li>
+                Admitted to graduate program via Exceptional Talents quota.
+              </li>
+              <li>
+                Secretary of Chemical Engineering Scientific Association (2018 –
+                2020).
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="avoid-break">
+          <h2>Engineering & Architecture Projects</h2>
+
+          <div class="entry avoid-break">
+            <div class="entry-title">
+              Bioprinter Hardware Engineering & Marlin Firmware (C++)
+              Customization
+            </div>
+            <p>
+              Designed and integrated a custom syringe-based extrusion head to
+              convert a standard FDM 3D printer into a dual-mode bioprinting
+              machine. Modified and flashed bare Marlin firmware (C++) to ensure
+              motherboard compatibility with the newly engineered liquid
+              extrusion system. Introduced a novel evaluation parameter to
+              correct standard print-quality calculation bugs, ensuring
+              high-fidelity geometric output evaluation.
             </p>
           </div>
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">DevOps & Tools</h4>
-            <p class="text-gray-700">Docker, Git, GitHub, Linux, Nginx</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">
-              Additional Languages
-            </h4>
-            <p class="text-gray-700">PHP, C++, MATLAB</p>
-          </div>
-          <div>
-            <h4 class="font-semibold text-blue-600 mb-2">Python Libraries</h4>
-            <p class="text-gray-700">
-              requests, Pillow (PIL), pyexiv2, openpyxl
+
+          <div class="entry avoid-break">
+            <div class="entry-title">
+              Intelligent Dictionary & AI Language Engine (Anki Integration)
+            </div>
+            <p>
+              Developed an intelligent automation pipeline connecting a local
+              Anki API with external AI services to autonomously generate
+              comprehensive dictionary entries from a single user input.
+              Implemented robust error handling and payload structuring to
+              manage network failures and API rate limits during continuous data
+              extraction.
             </p>
           </div>
-        </div>
-      </section>
 
-      <!-- Key Projects -->
-      <section class="mb-8">
-        <h3
-          class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2"
-        >
-          <div class="w-1 h-6 bg-blue-600"></div>
-          Key Backend Projects
-        </h3>
-
-        <div class="mb-6 p-4 border-l-4 border-blue-600 bg-blue-50">
-          <h4 class="text-xl font-bold text-gray-900 mb-2">
-            Django REST API — Task Management System (FooFi API)
-          </h4>
-          <p class="text-sm text-gray-600 mb-3 italic">
-            Python, Django, Django REST Framework, Token Authentication
-          </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Built a complete RESTful API from scratch using Django REST
-                Framework with user registration, authentication, and full CRUD
-                operations for managing tasks</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Implemented secure token-based authentication ensuring users
-                can only access and modify their own data</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Designed database models with Django ORM and handled data
-                serialization, validation, and error responses</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Tested API endpoints using Postman and managed secure
-                configuration with environment variables</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                ><strong>GitHub:</strong> github.com/p-yavari/FooFi-API</span
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="mb-6 p-4 border-l-4 border-green-600 bg-green-50">
-          <h4 class="text-xl font-bold text-gray-900 mb-2">
-            Anki Language Learning Assistant — API Integration Tool
-          </h4>
-          <p class="text-sm text-gray-600 mb-3 italic">
-            Python, REST APIs, JSON, Error Handling, Batch Processing
-          </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold mt-1">•</span>
-              <span
-                >Developed a Python automation script that connects to Anki's
-                local API (AnkiConnect) via HTTP requests to programmatically
-                read and update flashcard data</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold mt-1">•</span>
-              <span
-                >Integrated multiple third-party AI APIs (Google Gemini, OpenAI)
-                to enrich language flashcards with definitions, examples, and
-                translations</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold mt-1">•</span>
-              <span
-                >Implemented robust error handling for network failures, API
-                rate limits, and malformed responses to ensure script
-                reliability</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-green-600 font-bold mt-1">•</span>
-              <span
-                >Processed data in batches and managed state across multiple API
-                calls, demonstrating backend data pipeline design skills</span
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="p-4 border-l-4 border-purple-600 bg-purple-50">
-          <h4 class="text-xl font-bold text-gray-900 mb-2">
-            SEO Image Metadata Processor — Automation Pipeline
-          </h4>
-          <p class="text-sm text-gray-600 mb-3 italic">
-            Python, API Integration, Batch Processing, PIL, pyexiv2
-          </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 font-bold mt-1">•</span>
-              <span
-                >Built an automated pipeline that processes images in bulk,
-                extracting metadata and enriching it with AI-generated SEO
-                content</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 font-bold mt-1">•</span>
-              <span
-                >Integrated with external sheet APIs (Sheety) to collect user
-                input and AI APIs to generate optimized metadata</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 font-bold mt-1">•</span>
-              <span
-                >Handled file I/O, image format conversion (WebP), and batch
-                processing to automate repetitive business tasks</span
-              >
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Professional Experience -->
-      <section class="mb-8">
-        <h3
-          class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2"
-        >
-          <div class="w-1 h-6 bg-blue-600"></div>
-          Professional Experience
-        </h3>
-
-        <div class="mb-6">
-          <div class="flex justify-between items-baseline mb-1">
-            <h4 class="text-xl font-semibold text-gray-900">
-              Web Developer & System Administrator
-            </h4>
-            <span class="text-sm text-gray-600 font-medium"
-              >April 2024 – Present</span
-            >
+          <div class="entry avoid-break">
+            <div class="entry-title">
+              Smart Outdoor Route Planner (Geospatial & Weather API
+              Orchestration)
+            </div>
+            <p>
+              Architected the logic and API orchestration for a multi-service
+              web application, utilizing AI-assisted development to integrate
+              geospatial routing, driving durations, and real-time weather APIs.
+              Defined operational parameters for an autonomous indexing system
+              that calculates trekking times, hydration requirements, and safety
+              metrics.
+            </p>
           </div>
-          <p class="text-gray-600 italic mb-3">Euroslot Pars | Tehran, Iran</p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Configured and maintained development environment using Docker
-                and WSL, replacing legacy XAMPP setup</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Developed custom backend functionality in PHP to automate
-                content management workflows for non-technical users</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Built bulk data import feature to parse CSV files and populate
-                product database, reducing manual data entry</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Managed project codebase with Git and coordinated with
-                front-end developer using branching strategies</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Deployed application to production Linux server, configured
-                Nginx reverse proxy and CloudFlare CDN</span
-              >
-            </li>
-          </ul>
-        </div>
 
-        <div>
-          <div class="flex justify-between items-baseline mb-1">
-            <h4 class="text-xl font-semibold text-gray-900">
-              Freelance Developer & Automation Specialist
-            </h4>
-            <span class="text-sm text-gray-600 font-medium"
-              >March 2020 – April 2024</span
-            >
+          <div class="entry avoid-break">
+            <div class="entry-title">
+              Cloud-Deployed Telegram Data Extraction Bot (GCP, Python)
+            </div>
+            <p>
+              Developed a Python-based automation script utilizing the Telegram
+              API to autonomously parse live group chat data, extracting
+              specific vendor listings by matching unstructured text against
+              predefined logical constraints. Deployed the application on Google
+              Cloud Platform to ensure continuous uptime and execution.
+            </p>
           </div>
-          <p class="text-gray-600 italic mb-3">
-            Various Platforms & Personal Projects
-          </p>
-          <ul class="space-y-2 text-gray-700">
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Extended and debugged an existing Laravel e-commerce platform,
-                adding automated delivery notifications via email and SMS</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Administered Linux server (KVM), implementing security measures
-                including CSF firewall, DKIM/PTR records, and HSTS</span
-              >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-blue-600 font-bold mt-1">•</span>
-              <span
-                >Built Python automation tools integrating multiple APIs for
-                data processing and content generation workflows</span
-              >
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section>
-        <h3
-          class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2"
-        >
-          <div class="w-1 h-6 bg-blue-600"></div>
-          Education
-        </h3>
-        <div class="mb-4">
-          <div class="flex justify-between items-baseline">
-            <h4 class="text-lg font-semibold text-gray-900">
-              M.Sc. in Chemical Engineering, Process Design
-            </h4>
-            <span class="text-sm text-gray-600">2021 – 2024</span>
-          </div>
-          <p class="text-gray-600">
-            Iran University of Science and Technology, Tehran, Iran
-          </p>
-        </div>
-        <div>
-          <div class="flex justify-between items-baseline">
-            <h4 class="text-lg font-semibold text-gray-900">
-              B.Sc. in Chemical Engineering
-            </h4>
-            <span class="text-sm text-gray-600">2017 – 2021</span>
-          </div>
-          <p class="text-gray-600">Urmia University, Urmia, Iran</p>
-          <p class="text-sm text-gray-600 mt-1 italic">
-            Admitted to graduate program via Exceptional Talents quota
-          </p>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </body>
 </html>
